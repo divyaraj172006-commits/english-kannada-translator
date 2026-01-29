@@ -68,22 +68,134 @@ class EnglishKannadaTranslator:
         Returns:
             str: Translated Kannada text (or original if not in dictionary)
         """
-        # Common English to Kannada translations
+        # Common English to Kannada translations - Expanded Dictionary
         translation_dict = {
+            # Greetings
             "hello": "ನಮಸ್ಕಾರ",
+            "hi": "ಹೆಲೋ",
             "good morning": "ಶುಭೋದಯ",
-            "good evening": "ಶುಭ ಸಂಧ್ಯೆ",
+            "good afternoon": "ಶುಭ ಮಧ್ಯಾಹ್ನ",
+            "good evening": "ಶುಭ ಸಂಜೆ",
+            "good night": "ಶುಭ ರಾತ್ರಿ",
+            "goodbye": "ವಿದಾಯ",
+            "bye": "ಬೈ",
+            
+            # Common phrases
             "thank you": "ಧನ್ಯವಾದ",
+            "thanks": "ಧನ್ಯವಾದ",
+            "please": "ದಯವಿಟ್ಟು",
+            "sorry": "ಕ್ಷಮಿಸಿ",
+            "excuse me": "ಕ್ಷಮಿಸಿ",
             "yes": "ಹೌದು",
             "no": "ಇಲ್ಲ",
-            "sorry": "ಕ್ಷಮಿಸಿ",
+            "ok": "ಠಿಕ್ಕೆ",
+            "okay": "ಠಿಕ್ಕೆ",
+            
+            # Questions
             "how are you": "ನೀವು ಹೇಗಿದ್ದೀರಿ",
             "what is your name": "ನಿಮ್ಮ ಹೆಸರೇನು",
+            "where are you from": "ನೀವು ಎಲ್ಲಿಂದ",
+            "what": "ಏನು",
+            "where": "ಎಲ್ಲಿ",
+            "when": "ಯಾವಾಗ",
+            "who": "ಯಾರು",
+            "why": "ಏಕೆ",
+            "how": "ಹೇಗೆ",
+            
+            # Personal
             "my name is": "ನನ್ನ ಹೆಸರು",
+            "i am": "ನನ್ನ",
+            "i love": "ನನಗೆ ಪ್ರಿಯ",
+            "i like": "ನನಗೆ ಇಷ್ಟ",
+            "i hate": "ನನಗೆ ದ್ವೇಷ",
+            "nice to meet you": "ನಿನ್ನನ್ನು ಭೇಟಿ ಮಾಡಿ ಸಂತೋಷ",
+            
+            # Common objects
             "water": "ನೀರು",
             "food": "ಭೋಜನ",
             "help": "ಸಹಾಯ",
-            "goodbye": "ವಿದಾಯ",
+            "love": "ಪ್ರೀತಿ",
+            "friend": "ಸ್ನೇಹಿ",
+            "family": "ಕುಟುಂಬ",
+            "home": "ಮನೆ",
+            "school": "ಶಾಲೆ",
+            "work": "ಕೆಲಸ",
+            "book": "ಪುಸ್ತಕ",
+            "money": "ಹಣ",
+            "time": "ಸಮಯ",
+            "day": "ದಿನ",
+            "night": "ರಾತ್ರಿ",
+            "year": "ವರ್ಷ",
+            "hand": "ಕೈ",
+            "head": "ತಲೆ",
+            "eye": "ಕಣ್ಣು",
+            "ear": "ಕಿವಿ",
+            "mouth": "ಬಾಯಿ",
+            "heart": "ಹೃದಯ",
+            "leg": "ಕಾಲು",
+            "foot": "ಪಾದ",
+            
+            # Numbers
+            "one": "ಒಂದು",
+            "two": "ಎರಡು",
+            "three": "ಮೂರು",
+            "four": "ನಾಲ್ಕು",
+            "five": "ಐದು",
+            "six": "ಆರು",
+            "seven": "ಏಳು",
+            "eight": "ಎಂಟು",
+            "nine": "ಒಂಬತ್ತು",
+            "ten": "ಹತ್ತು",
+            
+            # Adjectives
+            "good": "ಒಳ್ಳೆಯ",
+            "bad": "ಕೆಟ್ಟ",
+            "big": "ದೊಡ್ಡ",
+            "small": "ಚಿಕ್ಕ",
+            "hot": "ಬಿಸಿ",
+            "cold": "ಶೀತಲ",
+            "happy": "ಸುಖ",
+            "sad": "ದುಃಖ",
+            "beautiful": "ಸುಂದರ",
+            "clean": "ಸ್ವಚ್ಛ",
+            "dirty": "ಕೊಳಕು",
+            "strong": "ಬಲಿಷ್ಠ",
+            "weak": "ದುರ್ಬಲ",
+            "fast": "ವೇಗ",
+            "slow": "ನಿಧಾನ",
+            
+            # Verbs
+            "go": "ಹೋಗು",
+            "come": "ಬರು",
+            "run": "ಓಡು",
+            "walk": "ನಡೆ",
+            "sit": "ಕುಳಿತುಕೊ",
+            "stand": "ನಿಂತುಕೊ",
+            "eat": "ತಿನ್ನು",
+            "drink": "ಕುಡಿ",
+            "sleep": "ನಿದ್ರೆ",
+            "wake": "ಏಳೇ",
+            "play": "ಆಟ",
+            "study": "ಅಧ್ಯಯನ",
+            "read": "ಓದು",
+            "write": "ಬರೆ",
+            "speak": "ಮಾತನಾಡು",
+            "listen": "ಕೆಳಗೆ",
+            "see": "ನೋಡು",
+            "hear": "ಕೇಳು",
+            "think": "ಯೋಚಿಸು",
+            "know": "ತಿಳಿ",
+            "give": "ಕೊಡು",
+            "take": "ತೆಗೆ",
+            "make": "ಮಾಡು",
+            "like": "ಇಷ್ಟ",
+            "love": "ಪ್ರೀತಿ",
+            
+            # Places
+            "india": "ಭಾರತ",
+            "bangalore": "ಬೆಂಗಳೂರು",
+            "kannada": "ಕನ್ನಡ",
+            "english": "ಇಂಗ್ಲೀಷ",
         }
         
         # Convert to lowercase for matching
@@ -93,13 +205,24 @@ class EnglishKannadaTranslator:
         if lower_text in translation_dict:
             return translation_dict[lower_text]
         
-        # Check for partial matches
-        for key, value in translation_dict.items():
-            if key in lower_text:
-                return text.replace(key, value, 1)
+        # Sort by length (longest first) to match longer phrases first
+        sorted_dict = sorted(translation_dict.items(), key=lambda x: len(x[0]), reverse=True)
+        
+        # Replace phrases in the text
+        result = lower_text
+        for english_phrase, kannada_phrase in sorted_dict:
+            # Only replace if it's a whole word or phrase
+            if english_phrase in result:
+                # Use word boundaries for single words
+                if ' ' not in english_phrase:
+                    import re
+                    pattern = r'\b' + re.escape(english_phrase) + r'\b'
+                    result = re.sub(pattern, kannada_phrase, result, flags=re.IGNORECASE)
+                else:
+                    result = result.replace(english_phrase, kannada_phrase)
         
         # If no match found, return original text
-        return text
+        return result if result != lower_text else text
 
 
 if __name__ == "__main__":

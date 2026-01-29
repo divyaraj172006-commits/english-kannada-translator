@@ -1,5 +1,8 @@
-google-cloud-translate==3.14.1
-SpeechRecognition==3.10.0
+flask==3.0.0
+google-cloud-translate==3.14.0
+SpeechRecognition==3.11.0
 gTTS==2.3.2
 pyttsx3==2.90
-pyaudio==0.2.13
+# pyaudio==0.2.13  # OPTIONAL: Only needed for microphone input. See INSTALLATION.md for Windows setup
+python-dotenv==1.0.0
+Werkzeug==3.0.1

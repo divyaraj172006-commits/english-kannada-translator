@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>English to Kannada Translator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌐 English to Kannada Translator</h1>
+            <p>Translate text and speech between English and Kannada</p>
+        </header>
+
+        <main>
+            <!-- Tab Navigation -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('text-translate')">Text Translation</button>
+                <button class="tab-btn" onclick="switchTab('speech-translate')">Speech to Text</button>
+                <button class="tab-btn" onclick="switchTab('text-speech')">Text with Speech Output</button>
+                <button class="tab-btn" onclick="switchTab('full-translate')">Full Speech Translation</button>
+            </div>
+
+            <!-- Tab 1: Text Translation -->
+            <div id="text-translate" class="tab-content active">
+                <div class="card">
+                    <h2>Text Translation</h2>
+                    <div class="form-group">
+                        <label for="english-text">Enter English Text:</label>
+                        <textarea id="english-text" placeholder="Type your English text here..." rows="5"></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="translateText()">Translate</button>
+                    
+                    <div id="text-result" class="result-box" style="display: none;">
+                        <div class="result-item">
+                            <h3>English:</h3>
+                            <p id="result-english" class="result-text"></p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Kannada:</h3>
+                            <p id="result-kannada" class="result-text kannada-text"></p>
+                        </div>
+                        <button class="btn btn-secondary" onclick="copyToClipboard('result-kannada')">Copy Kannada</button>
+                    </div>
+                    <div id="text-error" class="error-message" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Tab 2: Speech to Text -->
+            <div id="speech-translate" class="tab-content">
+                <div class="card">
+                    <h2>Speech to Text</h2>
+                    <p>Upload an audio file to convert speech to text</p>
+                    
+                    <div class="form-group">
+                        <label for="audio-file">Upload Audio File:</label>
+                        <input type="file" id="audio-file" accept="audio/*">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="speechToText()">Convert Speech to Text</button>
+                    
+                    <div id="speech-result" class="result-box" style="display: none;">
+                        <h3>Recognized Text:</h3>
+                        <p id="result-recognized" class="result-text"></p>
+                        <button class="btn btn-secondary" onclick="copyToClipboard('result-recognized')">Copy Text</button>
+                    </div>
+                    <div id="speech-error" class="error-message" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Text with Speech Output -->
+            <div id="text-speech" class="tab-content">
+                <div class="card">
+                    <h2>Text Translation with Speech Output</h2>
+                    <p>Translate text and listen to the Kannada pronunciation</p>
+                    
+                    <div class="form-group">
+                        <label for="text-speech-input">Enter English Text:</label>
+                        <textarea id="text-speech-input" placeholder="Type your English text here..." rows="5"></textarea>
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="translateWithSpeech()">Translate & Play Audio</button>
+                    
+                    <div id="text-speech-result" class="result-box" style="display: none;">
+                        <div class="result-item">
+                            <h3>English:</h3>
+                            <p id="result-english-speech" class="result-text"></p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Kannada:</h3>
+                            <p id="result-kannada-speech" class="result-text kannada-text"></p>
+                        </div>
+                        
+                        <div class="audio-player" id="audio-player" style="display: none;">
+                            <h3>Audio:</h3>
+                            <audio id="audio-element" controls style="width: 100%;">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        
+                        <button class="btn btn-secondary" onclick="copyToClipboard('result-kannada-speech')">Copy Kannada</button>
+                    </div>
+                    <div id="text-speech-error" class="error-message" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Tab 4: Full Speech Translation -->
+            <div id="full-translate" class="tab-content">
+                <div class="card">
+                    <h2>Full Speech Translation</h2>
+                    <p>Convert speech to text, translate to Kannada, and listen to the translation</p>
+                    
+                    <div class="form-group">
+                        <label for="full-audio-file">Upload Audio File:</label>
+                        <input type="file" id="full-audio-file" accept="audio/*">
+                    </div>
+                    
+                    <button class="btn btn-primary" onclick="fullTranslation()">Process & Translate</button>
+                    
+                    <div id="full-result" class="result-box" style="display: none;">
+                        <div class="result-item">
+                            <h3>Recognized English:</h3>
+                            <p id="result-full-english" class="result-text"></p>
+                        </div>
+                        <div class="result-item">
+                            <h3>Translated Kannada:</h3>
+                            <p id="result-full-kannada" class="result-text kannada-text"></p>
+                        </div>
+                        
+                        <div class="audio-player" id="full-audio-player" style="display: none;">
+                            <h3>Kannada Audio:</h3>
+                            <audio id="full-audio-element" controls style="width: 100%;">
+                                Your browser does not support the audio element.
+                            </audio>
+                        </div>
+                        
+                        <button class="btn btn-secondary" onclick="copyToClipboard('result-full-kannada')">Copy Kannada</button>
+                    </div>
+                    <div id="full-error" class="error-message" style="display: none;"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2024 English to Kannada Translator | Built with Flask, HTML, and CSS</p>
+        </footer>
+    </div>
+
+    <div id="loading" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>Processing...</p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
