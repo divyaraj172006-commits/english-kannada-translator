@@ -105,9 +105,40 @@ class SpeechOutput:
             tts = gTTS(text=text, lang=language, slow=False)
             tts.save(output_file)
             print(f"Speech saved to: {output_file}")
+            return output_file
         
         except Exception as e:
             print(f"Error saving to file: {e}")
+            return None
+    
+    def speak_and_save(self, text, language='kn'):
+        """
+        Generate and save speech to a temporary file
+        
+        Args:
+            text (str): Text to convert to speech
+            language (str): Language code
+            
+        Returns:
+            str: Path to the saved audio file, or None if failed
+        """
+        try:
+            import tempfile
+            import uuid
+            
+            # Create a temporary file with a unique name
+            temp_dir = Path("temp_audio")
+            temp_dir.mkdir(exist_ok=True)
+            
+            # Generate unique filename
+            filename = f"speech_{uuid.uuid4().hex[:8]}.mp3"
+            output_file = temp_dir / filename
+            
+            return self.save_to_file(text, str(output_file), language)
+        
+        except Exception as e:
+            print(f"Error in speak_and_save: {e}")
+            return None
 
 
 if __name__ == "__main__":

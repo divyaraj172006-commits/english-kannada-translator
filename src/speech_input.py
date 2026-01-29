@@ -3,6 +3,14 @@ Speech-to-Text Module
 Handles audio input and speech recognition
 """
 
+# Workaround for Python 3.13 compatibility with SpeechRecognition
+import sys
+if sys.version_info >= (3, 13):
+    import types
+    # Create dummy modules for removed Python 3.13 modules
+    sys.modules['aifc'] = types.ModuleType('aifc')
+    sys.modules['audioop'] = types.ModuleType('audioop')
+
 import speech_recognition as sr
 import os
 
@@ -12,7 +20,14 @@ class SpeechInput:
     def __init__(self):
         """Initialize the speech recognizer"""
         self.recognizer = sr.Recognizer()
-        self.microphone = sr.Microphone()
+        self.microphone = None
+        
+        # Try to initialize microphone, but don't fail if pyaudio is not available
+        try:
+            self.microphone = sr.Microphone()
+        except AttributeError:
+            # pyaudio not installed - microphone input won't work but file input will
+            pass
     
     def record_from_microphone(self, duration=None, language='en-US'):
         """
@@ -87,6 +102,19 @@ class SpeechInput:
         except Exception as e:
             print(f"Error during speech recognition: {e}")
             return ""
+    
+    def recognize_from_file(self, audio_file, language='en-US'):
+        """
+        Alias for record_from_file for compatibility
+        
+        Args:
+            audio_file (str): Path to audio file
+            language (str): Language code for recognition (default: 'en-US')
+            
+        Returns:
+            str: Recognized text, or empty string if recognition failed
+        """
+        return self.record_from_file(audio_file, language)
 
 
 if __name__ == "__main__":

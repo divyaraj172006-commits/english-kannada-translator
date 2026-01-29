@@ -1,0 +1,12 @@
+# Enforce LF for shell scripts and Python files
+*.sh eol=lf
+*.py eol=lf
+*.md eol=lf
+
+# Enforce CRLF for Windows batch files
+*.bat eol=crlf
+*.cmd eol=crlf
+
+# Preserve exact line endings for important files
+.gitattributes text eol=lf
+.gitignore text eol=lf
