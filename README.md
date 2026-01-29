@@ -1,4 +1,4 @@
-live serverhttps://english-kannada-translator-6.onrender.com
+live server https://english-kannada-translator-6.onrender.com
 # English to Kannada Translator
 
 A comprehensive web-based translator application that supports both text and speech translation between English and Kannada using Flask, HTML, and CSS.
